@@ -1,0 +1,44 @@
+<div class="jumbotron bg-white text-center container" >
+    <h1 class="display-4">Corona Tracker Country wise</h1>
+    <hr>
+    <div class="mx-auto">
+        <div class="form-group col-lg-5 mx-auto">
+            <label for="c">Select Country</label>
+            <select class="form-control" #input (change) = updateCountry(input.value)>
+                <option value="{{country}}" *ngFor="let country of countries" >{{country}}</option> 
+
+            </select>
+
+        </div>
+    </div>
+    <app-dashboard [totalConfirmed] = 'totalConfirmed' [totalActive] ='totalActive'
+    [totalDeaths] = 'totalDeaths' [totalRecovered] ='totalRecovered'></app-dashboard>
+
+    <div class="row">
+        <div class="col">
+            <google-chart [type]='lineChart.chartType' style="width: 100%;" [options]='lineChart.options' [height]='lineChart.height' [data]='datatable'></google-chart>
+        </div>
+        <div class="col">
+            <table class="table table-bordered table-hover ">
+                <thead>
+                    <tr>
+                        <td>S.no</td>
+                        <td>Date</td>
+                        <td>Cases</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of selectedCountryDateWiseData; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{item.date | date}}</td>
+                    <td>{{item.cases}}</td>
+                    
+                </tr>
+                
+                </tbody>
+            </table>
+
+        </div>
+        </div>
+    
+</div>

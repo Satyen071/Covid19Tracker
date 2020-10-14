@@ -1,0 +1,50 @@
+<div class="container">
+<div class="jumbotron bg-white text-center" >
+    <h1 class="display-4">Corona Tracker</h1>
+    <hr>
+    <app-dashboard [totalConfirmed] = 'totalConfirmed' [totalActive] ='totalActive'
+    [totalDeaths] = 'totalDeaths' [totalRecovered] ='totalRecovered'></app-dashboard>
+
+
+</div>
+<div class="ui form">
+    <div class="inline fields">
+      <label for="Cases">choose cases:</label>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id="c" #c (click) = "updateChart(c)" name="CaseType" value ='c' checked="" tabindex="0" class="hidden">
+          <label for="c">Confirmed</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id="a" #a (click) = "updateChart(a)" name="CaseType" value ='a' tabindex="0" class="hidden">
+          <label for="a">Active</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id="d" #d (click) = "updateChart(d)" name="CaseType" value ='d' tabindex="0" class="hidden">
+          <label for="d">Deaths</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id ="r" #r (click) = "updateChart(r)" name="CaseType" value ='r' tabindex="0" class="hidden">
+          <label for="r">Recovered</label>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="col">
+        <google-chart [type]='chart.ColumnChart' style="width: 100%;" [options]='chart.options' [height]='chart.height' [data]='datatable'></google-chart>
+
+    </div>
+    <div class="col">
+        <google-chart [type]='chart.PieChart' style="width: 100%;" [options]='chart.options' [height]='chart.height' [data]='datatable'></google-chart>
+
+    </div>
+</div>
+</div>
+
